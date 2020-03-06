@@ -67,14 +67,7 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         //.setAction("Action", null).show();
-                CurrentActivity.setActivity(MainActivity.this);
-                //startActivity(new Intent(MainActivity.this,DodavanjeKolegija.class));
-                AddKolegij addKolegij = new AddKolegij();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.noviFrag,addKolegij)
-                        .addToBackStack("")
-                        .commit();
+                startActivity(new Intent(MainActivity.this,DodavanjeKolegija.class));
             }
         });
 
