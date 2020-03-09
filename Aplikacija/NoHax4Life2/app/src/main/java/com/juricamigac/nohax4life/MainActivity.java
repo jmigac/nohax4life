@@ -1,5 +1,6 @@
 package com.juricamigac.nohax4life;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
         bazaPodataka = getInstance(this);
         sviKolegiji = bazaPodataka.getKolegijDAO().dohvatiSveKolegije();
         postaviRecycleView();
-
+        makeKolegijEraseable(recyclerView,kolegijAdapter);
     }
 
 
@@ -155,13 +156,9 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
         kolegijAdapter.notifyItemInserted(kolegijViewModel.kolegijiLiveData.getValue().size()-1);
         kolegijAdapter.notifyDataSetChanged();
     }
-    public void makeKolegijEraseable(RecyclerView recyclerView, final KolegijAdapter kolegijAdapter){
-        new ItemTouchHelper(new ItemTouchHelper.Callback() {
-            @Override
-            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-                return 0;
-            }
 
+    public void makeKolegijEraseable(final RecyclerView recyclerView, final KolegijAdapter kolegijAdapter){
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -169,8 +166,10 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-
-                Toast.makeText(MainActivity.this, "Kolegij obrisan.", Toast.LENGTH_SHORT).show();
+                Kolegij kolegij = kolegijAdapter.getKolegijAtPosition(viewHolder.getAdapterPosition());
+                kolegijAdapter.removeKolegijAtPosition(viewHolder.getAdapterPosition());
+                kolegijViewModel.izbrisiKolegij(kolegij);
+                Snackbar.make(recyclerView,"Izbrisan je kolegij "+kolegij.getNaziv(),Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
         }).attachToRecyclerView(recyclerView);
     }
