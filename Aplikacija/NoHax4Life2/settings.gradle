@@ -1,0 +1,2 @@
+include ':app', ':database', ':core', ':repozitorij'
+rootProject.name='NoHax4Life'

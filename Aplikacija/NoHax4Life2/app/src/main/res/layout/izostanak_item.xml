@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tvRazlogIzostanka"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginEnd="7dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingTop="10dp"
+            android:text="Bio sam spriječen zbog odlaska na kavu s prijateljem."
+            android:textAlignment="textEnd"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvDatumIzostanka"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toStartOf="@id/tvRazlogIzostanka"
+            android:paddingTop="10dp"
+            android:text="24/11/2019"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>
