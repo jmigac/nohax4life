@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.juricamigac.core.entiteti.Izostanak;
 import com.juricamigac.core.entiteti.IzostanciKolegija;
+import com.juricamigac.core.entiteti.Kolegij;
 import com.juricamigac.database.MyDatabase;
 
 import java.util.List;
@@ -30,5 +31,8 @@ public class IzostanakDAL {
     public static void IzbrisiSveIzostanke(Context context){
         MyDatabase.getInstance(context).getIzostanakDAO().izbrisiSveIzostanke();
         MyDatabase.getInstance(context).getIzostanakDAO().izbrisiSveIzostankeKolegija();
+    }
+    public static void IzbrisiIzostankeKolegijaOdredenogKolegija(Context context, Kolegij kolegij){
+        MyDatabase.getInstance(context).getIzostanakDAO().izbrisiSveIzostankeOdredenogKolegija(kolegij.getId());
     }
 }

@@ -55,6 +55,13 @@ public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijH
         holder.idKolegija = trenutniKolegij.getId();
     }
 
+    public Kolegij getKolegijAtPosition(int position){
+        return kolegiji.get(position);
+    }
+    public void removeKolegijAtPosition(int position){
+        kolegiji.remove(position);
+    }
+
     @Override
     public int getItemCount() {
         return kolegiji.size();

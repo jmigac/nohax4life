@@ -1,5 +1,6 @@
 package com.juricamigac.nohax4life;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -47,8 +48,6 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
     private List<Kolegij> sviKolegiji;
     private KolegijViewModel kolegijViewModel;
     public KolegijAdapter kolegijAdapter;
-    private int pozicijaNovogUpisa;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +67,6 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        //.setAction("Action", null).show();
                 startActivity(new Intent(MainActivity.this,DodavanjeKolegija.class));
             }
         });
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
         bazaPodataka = getInstance(this);
         sviKolegiji = bazaPodataka.getKolegijDAO().dohvatiSveKolegije();
         postaviRecycleView();
-
+        makeKolegijEraseable(recyclerView,kolegijAdapter);
     }
 
 
@@ -154,6 +151,24 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
         kolegijViewModel.dohvatiSveKolegijeLIVE();
         kolegijAdapter.notifyItemInserted(kolegijViewModel.kolegijiLiveData.getValue().size()-1);
         kolegijAdapter.notifyDataSetChanged();
+    }
+
+    public void makeKolegijEraseable(final RecyclerView recyclerView, final KolegijAdapter kolegijAdapter){
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Kolegij kolegij = kolegijAdapter.getKolegijAtPosition(viewHolder.getAdapterPosition());
+                kolegijAdapter.removeKolegijAtPosition(viewHolder.getAdapterPosition());
+                kolegijViewModel.izbrisiKolegij(kolegij);
+                kolegijViewModel.izbrisiIzostankeKolegija(kolegij);
+                Snackbar.make(recyclerView,"Izbrisan je kolegij "+kolegij.getNaziv(),Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
 }

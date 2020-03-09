@@ -13,6 +13,7 @@ import com.juricamigac.core.entiteti.IzostanciKolegija;
 import com.juricamigac.core.entiteti.Kolegij;
 import com.juricamigac.database.KolegijDAO_Impl;
 import com.juricamigac.database.MyDatabase;
+import com.juricamigac.repozitorij.IzostanakDAL;
 import com.juricamigac.repozitorij.KolegijDAL;
 
 import java.util.List;
@@ -48,5 +49,8 @@ public class KolegijViewModel extends AndroidViewModel {
     public LiveData<List<Kolegij>> dohvatiSveKolegijeLIVE(){
         kolegijiLiveData = KolegijDAL.DohvatiSveKolegijeLive(context);
         return kolegijiLiveData;
+    }
+    public void izbrisiIzostankeKolegija(Kolegij kolegij){
+        IzostanakDAL.IzbrisiIzostankeKolegijaOdredenogKolegija(context,kolegij);
     }
 }
