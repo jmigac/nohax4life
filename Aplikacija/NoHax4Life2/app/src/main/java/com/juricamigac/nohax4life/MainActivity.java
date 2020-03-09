@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
     private List<Kolegij> sviKolegiji;
     private KolegijViewModel kolegijViewModel;
     public KolegijAdapter kolegijAdapter;
-    private int pozicijaNovogUpisa;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +67,6 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        //.setAction("Action", null).show();
                 startActivity(new Intent(MainActivity.this,DodavanjeKolegija.class));
             }
         });
@@ -169,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
                 Kolegij kolegij = kolegijAdapter.getKolegijAtPosition(viewHolder.getAdapterPosition());
                 kolegijAdapter.removeKolegijAtPosition(viewHolder.getAdapterPosition());
                 kolegijViewModel.izbrisiKolegij(kolegij);
+                kolegijViewModel.izbrisiIzostankeKolegija(kolegij);
                 Snackbar.make(recyclerView,"Izbrisan je kolegij "+kolegij.getNaziv(),Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
         }).attachToRecyclerView(recyclerView);
