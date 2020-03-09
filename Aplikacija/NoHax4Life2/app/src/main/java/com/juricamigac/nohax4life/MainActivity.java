@@ -9,6 +9,8 @@ import com.juricamigac.core.entiteti.Kolegij;
 import com.juricamigac.database.MyDatabase;
 import com.juricamigac.nohax4life.Adapters.KolegijAdapter;
 import com.juricamigac.nohax4life.ViewModel.KolegijViewModel;
+import com.juricamigac.repozitorij.IzostanakDAL;
+import com.juricamigac.repozitorij.KolegijDAL;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Random;
@@ -70,30 +73,9 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
                 startActivity(new Intent(MainActivity.this,DodavanjeKolegija.class));
             }
         });
-
-
+        
         bazaPodataka = getInstance(this);
-
         sviKolegiji = bazaPodataka.getKolegijDAO().dohvatiSveKolegije();
-        if(sviKolegiji.size()>0){
-            for(Kolegij k:sviKolegiji){
-                Log.e("Kolegij",k.getNaziv());
-            }
-        }else{
-            Kolegij kolegij1 = new Kolegij();
-            kolegij1.setNaziv("SPIS");
-            kolegij1.setNazivIzvodenjaKolegija("Predavanje");
-            kolegij1.setBrojIzostanaka(3);
-            Kolegij kolegij2 = new Kolegij();
-            kolegij2.setNaziv("EMP");
-            kolegij2.setNazivIzvodenjaKolegija("Laboratorijske vježbe");
-            kolegij2.setBrojIzostanaka(3);
-            Kolegij kolegij3 = new Kolegij();
-            kolegij3.setNaziv("NWTIS");
-            kolegij3.setNazivIzvodenjaKolegija("Laboratorijske vježbe");
-            kolegij3.setBrojIzostanaka(3);
-            bazaPodataka.getKolegijDAO().unosKolegija(kolegij1,kolegij2,kolegij3);
-        }
         postaviRecycleView();
 
     }
@@ -133,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            KolegijDAL.IzbrisiSveKolegije(this);
+            IzostanakDAL.IzbrisiSveIzostanke(this);
             return true;
         }
 
@@ -165,8 +149,10 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
     }
 
     @Override
-    public void notifyChanges() {
-        kolegijAdapter.notifyItemInserted(pozicijaNovogUpisa+1);
+    public void notifyChanges(Kolegij kolegij) {
+        kolegijViewModel.unosKolegija(kolegij);
+        kolegijViewModel.dohvatiSveKolegijeLIVE();
+        kolegijAdapter.notifyItemInserted(kolegijViewModel.kolegijiLiveData.getValue().size()-1);
         kolegijAdapter.notifyDataSetChanged();
     }
 

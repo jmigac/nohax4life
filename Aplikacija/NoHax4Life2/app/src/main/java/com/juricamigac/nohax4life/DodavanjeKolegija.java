@@ -59,7 +59,7 @@ public class DodavanjeKolegija extends AppCompatActivity {
                     kolegij.setNaziv(etNazivKolegija.getText().toString());
                     kolegij.setBrojIzostanaka(Integer.parseInt(etBrojIzostanaka.getText().toString()));
                     kolegij.setNazivIzvodenjaKolegija(dropDownNaciniIzvodenjaNastave.getSelectedItem().toString());
-                    KolegijDAL.KreirajKolegij(getApplicationContext(),kolegij);
+                    onKolegijAdded.notifyChanges(kolegij);
                     finish();
                 }
             }

@@ -34,6 +34,9 @@ public class KolegijDAL {
     public static LiveData<List<Kolegij>> DohvatiSveKolegijeLive(Context context){
         return MyDatabase.getInstance(context).getKolegijDAO().dohvatiSveKolegijeLIVE();
     }
+    public static void IzbrisiSveKolegije(Context context){
+        MyDatabase.getInstance(context).getKolegijDAO().izbrisiSveKolegije();
+    }
 
 
 }

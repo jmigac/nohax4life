@@ -27,4 +27,8 @@ public class IzostanakDAL {
     public static LiveData<Integer> DohvatiBrojIzostanakaLIVE(Context context, int id) {
         return MyDatabase.getInstance(context).getIzostanakDAO().dohvatiBrojIzostanakaOdredenogKolegijaLIVE(id);
     }
+    public static void IzbrisiSveIzostanke(Context context){
+        MyDatabase.getInstance(context).getIzostanakDAO().izbrisiSveIzostanke();
+        MyDatabase.getInstance(context).getIzostanakDAO().izbrisiSveIzostankeKolegija();
+    }
 }

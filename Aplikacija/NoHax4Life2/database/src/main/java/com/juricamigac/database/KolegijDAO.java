@@ -38,4 +38,7 @@ public interface KolegijDAO {
 
     @Query("SELECT * FROM kolegij WHERE id = :id")
     public LiveData<Kolegij> dohvatiKolegijLIVE(int id);
+
+    @Query("DELETE FROM kolegij")
+    public void izbrisiSveKolegije();
 }
