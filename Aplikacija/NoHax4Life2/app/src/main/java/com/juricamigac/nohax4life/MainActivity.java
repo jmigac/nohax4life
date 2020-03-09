@@ -155,5 +155,24 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
         kolegijAdapter.notifyItemInserted(kolegijViewModel.kolegijiLiveData.getValue().size()-1);
         kolegijAdapter.notifyDataSetChanged();
     }
+    public void makeKolegijEraseable(RecyclerView recyclerView, final KolegijAdapter kolegijAdapter){
+        new ItemTouchHelper(new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                return 0;
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                Toast.makeText(MainActivity.this, "Kolegij obrisan.", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(recyclerView);
+    }
 
 }
