@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#F0AD4E"
         android:padding="5dp">
 
         <TextView
@@ -29,15 +30,14 @@
 
         <TextView
             android:id="@+id/tvDatumIzostanka"
-            android:layout_toStartOf="@id/tvRazlogIzostanka"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
+            android:layout_toStartOf="@id/tvRazlogIzostanka"
             android:text="3/3"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textSize="36sp"
-            />
+            android:textSize="36sp" />
 
         <TextView
             android:id="@+id/tvNacinIzvodenja"
