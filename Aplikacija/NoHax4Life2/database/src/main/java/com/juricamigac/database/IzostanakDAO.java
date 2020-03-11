@@ -60,4 +60,6 @@ public interface IzostanakDAO {
     @Query("SELECT COUNT(*) FROM izostanciKolegija WHERE idKolegij = :id")
     public LiveData<Integer> dohvatiBrojIzostanakaOdredenogKolegijaLIVE(int id);
 
+    @Query("SELECT * FROM izostanciKolegija WHERE idKolegij = :idKolegija AND idIzostanka = :idIzostanka")
+    public IzostanciKolegija dohvatiIzostanakKolegijaPoKolegijuIzostanku(int idKolegija, int idIzostanka);
 }

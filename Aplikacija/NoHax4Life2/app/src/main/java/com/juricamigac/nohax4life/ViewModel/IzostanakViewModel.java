@@ -35,8 +35,11 @@ public class IzostanakViewModel extends AndroidViewModel {
     public void AzuriranjeIzostanka(){
 
     }
-    public void BrisanjeIzostanka(){
-
+    public void BrisanjeIzostanka(int idIzostanka){
+        IzostanakDAL.BrisanjeIzostanka(context,idIzostanka);
+    }
+    public void BrisanjeIzostankaKolegija(int idKolegija,int idIzostanka){
+        IzostanakDAL.BrisanjeIzostankaKolegija(context,idKolegija,idIzostanka);
     }
     public LiveData<List<Izostanak>> DohvatiSveIzostankeLIVE(int id){
         sviIzostanci = IzostanakDAL.DohvatiSveIzostankeLIVE(context,id);

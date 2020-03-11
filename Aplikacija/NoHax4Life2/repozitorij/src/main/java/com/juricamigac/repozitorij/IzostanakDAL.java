@@ -35,4 +35,13 @@ public class IzostanakDAL {
     public static void IzbrisiIzostankeKolegijaOdredenogKolegija(Context context, Kolegij kolegij){
         MyDatabase.getInstance(context).getIzostanakDAO().izbrisiSveIzostankeOdredenogKolegija(kolegij.getId());
     }
+
+    public static void BrisanjeIzostanka(Context context, int id) {
+        MyDatabase.getInstance(context).getIzostanakDAO().izbrisiIzostanak(id);
+    }
+
+    public static void BrisanjeIzostankaKolegija(Context context, int idKolegija, int idIzostanka) {
+        IzostanciKolegija izostanciKolegija = MyDatabase.getInstance(context).getIzostanakDAO().dohvatiIzostanakKolegijaPoKolegijuIzostanku(idKolegija,idIzostanka);
+        MyDatabase.getInstance(context).getIzostanakDAO().izbrisiIzostanakKolegija(izostanciKolegija.getId());
+    }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginEnd="5dp"
@@ -8,9 +9,10 @@
     android:layout_marginBottom="2dp">
 
     <RelativeLayout
+        android:id="@+id/kolegijRelativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#F0AD4E"
+        android:background="#31536d"
         android:padding="5dp">
 
         <TextView
@@ -26,6 +28,7 @@
             android:text="Naziv kolegija"
             android:textAlignment="textEnd"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#A3C0D5"
             android:textSize="20sp" />
 
         <TextView
@@ -37,6 +40,7 @@
             android:layout_toStartOf="@id/tvRazlogIzostanka"
             android:text="3/3"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#A3C0D5"
             android:textSize="36sp" />
 
         <TextView
@@ -45,9 +49,20 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvRazlogIzostanka"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="1dp"
             android:layout_marginEnd="6dp"
-            android:text="Predavanje" />
+            android:text="Predavanje"
+            android:textColor="#A3C0D5" />
+
+        <ImageView
+            android:id="@+id/iVOmjerBrojaIzostanaka"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvDatumIzostanka"
+            android:layout_marginTop="5dp"
+            android:background="#5CB85C"
+            android:maxHeight="10dp"
+            android:minHeight="5dp" />
 
     </RelativeLayout>
 

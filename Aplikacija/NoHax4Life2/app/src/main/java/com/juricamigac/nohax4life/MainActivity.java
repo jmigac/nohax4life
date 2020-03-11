@@ -35,13 +35,14 @@ import java.util.List;
 import java.util.Random;
 
 import Managers.CurrentActivity;
+import interfaces.IChangeColor;
 import interfaces.OnKolegijAdded;
 import interfaces.OnKolegijChanged;
 import interfaces.OnKolegijClick;
 
 import static com.juricamigac.database.MyDatabase.getInstance;
 
-public class MainActivity extends AppCompatActivity implements OnKolegijClick, OnKolegijChanged, OnKolegijAdded {
+public class MainActivity extends AppCompatActivity implements OnKolegijClick, OnKolegijChanged, OnKolegijAdded, IChangeColor {
 
     private MyDatabase bazaPodataka = null;
     private RecyclerView recyclerView;
@@ -171,4 +172,9 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
         }).attachToRecyclerView(recyclerView);
     }
 
+    @Override
+    public void changeColor() {
+        float postotak;
+
+    }
 }
