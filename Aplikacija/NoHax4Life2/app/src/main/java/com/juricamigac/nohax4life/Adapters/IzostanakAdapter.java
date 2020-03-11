@@ -52,6 +52,13 @@ public class IzostanakAdapter extends RecyclerView.Adapter<IzostanakAdapter.Izos
         return izostanci.size();
     }
 
+    public Izostanak getIzostanakAt(int pozicija) {
+        return izostanci.get(pozicija);
+    }
+    public void removeIzostanakAt(int pozicija){
+        izostanci.remove(pozicija);
+    }
+
     public class IzostanakHolder extends RecyclerView.ViewHolder{
 
         private TextView tvDatumIzostanka;
