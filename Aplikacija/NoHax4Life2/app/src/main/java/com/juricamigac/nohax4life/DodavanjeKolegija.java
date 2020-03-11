@@ -2,6 +2,7 @@ package com.juricamigac.nohax4life;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -60,7 +61,7 @@ public class DodavanjeKolegija extends AppCompatActivity {
                     kolegij.setBrojIzostanaka(Integer.parseInt(etBrojIzostanaka.getText().toString()));
                     kolegij.setNazivIzvodenjaKolegija(dropDownNaciniIzvodenjaNastave.getSelectedItem().toString());
                     onKolegijAdded.notifyChanges(kolegij);
-                    finish();
+                    ((Activity)getApplicationContext()).finishAffinity();
                 }
             }
         });
@@ -80,7 +81,8 @@ public class DodavanjeKolegija extends AppCompatActivity {
         nacini.add("Laboratorijske vježbe");
         nacini.add("Auditorne vježbe");
         nacini.add("Demonstrature");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,nacini);
+        //android.R.layout.simple_spinner_item
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_view,nacini);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropDownNaciniIzvodenjaNastave.setAdapter(adapter);
 

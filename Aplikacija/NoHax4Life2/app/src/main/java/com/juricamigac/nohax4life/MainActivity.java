@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,DodavanjeKolegija.class));
+
             }
         });
         
