@@ -1,13 +1,16 @@
 package com.juricamigac.nohax4life;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
+import android.content.ClipData;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +21,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.juricamigac.core.entiteti.Izostanak;
 import com.juricamigac.core.entiteti.IzostanciKolegija;
 import com.juricamigac.core.entiteti.Kolegij;
@@ -67,6 +71,7 @@ public class DodavanjeIzostanka extends AppCompatActivity {
         postaviPodatkeNaGUI();
         postaviDefaultDatum();
         postaviRecycleView();
+        makeIzostanakEraseable(recyclerView,izostanakAdapter);
         observajMijenjanjeBrojaIzostanaka();
         akcijaDodavanjaIzostanka();
     }
@@ -196,5 +201,22 @@ public class DodavanjeIzostanka extends AppCompatActivity {
             throw new RuntimeException(getContext().toString()
                     + " must implement OnKolegijChanged");
         }
+    }
+    public void makeIzostanakEraseable(final RecyclerView recyclerView, final IzostanakAdapter izostanakAdapter){
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Izostanak izostanak= izostanakAdapter.getIzostanakAt(viewHolder.getAdapterPosition());
+                izostanakAdapter.removeIzostanakAt(viewHolder.getAdapterPosition());
+                izostanakViewModel.BrisanjeIzostankaKolegija(kolegijPromatranja.getId(),izostanak.getId());
+                izostanakViewModel.BrisanjeIzostanka(izostanak.getId());
+                Snackbar.make(recyclerView,"Izbrisan je izostanak.",Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 }
