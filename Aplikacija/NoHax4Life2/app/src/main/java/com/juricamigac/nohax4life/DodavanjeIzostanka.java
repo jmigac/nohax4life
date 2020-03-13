@@ -44,21 +44,65 @@ import static java.security.AccessController.getContext;
 
 public class DodavanjeIzostanka extends AppCompatActivity {
 
+    /**
+     * Varijabla za prikazivanje odabranog datuma na formi.
+     */
     private String datumIzostanka;
+    /**
+     * Varijabla koja sprema prosljedeni objekt Kolegija za koji se unose izostanci.
+     */
     private Kolegij kolegijPromatranja;
+    /**
+     * Varijabla koja sprema u String trenutni broj izostanaka.
+     */
     private String brojIzostanaka;
-    private String nacinIzvodenja;
+    /**
+     * Varijabla koja sprema idKolegija koji se trenutno promatra takoder unutar varijable kolegijPromatranja.
+     */
     private int idKolegija;
+    /**
+     * Varijabla za upravljanje elementom forme, za prikazivanje teksta, naziva kolegija.
+     */
     private TextView tvIzostanakNazivKolegija;
+    /**
+     * Varijabla za upravljanje elementom forme za prikazivanje nacina izvodenja nastave.
+     */
     private TextView tvIzostanakNacinIzvodenjaNastave;
+    /**
+     * Varijabla za upravljanje elementom forme za ispis broja izostanka.
+     */
     private TextView tvIzostanakBrojIzostanaka;
+    /**
+     * Varijabla za upravljanje elementom forme za ispis datuma.
+     */
     private TextView tvDatum;
+    /**
+     * Varijabla za upravljanje elementom forme, za unos razloga izostanka.
+     */
     private EditText etRazlogIzostanka;
+    /**
+     * Varijabla za upravljanje listenerom za pokretanje dialoga za odabir datuma.
+     */
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    /**
+     * Varijabla za upravljanje elementom forme, gumb za pokretanje kreriranja novog izostanka.
+     */
     private Button btnDodajIzostanak;
+    /**
+     * Varijabla za upravljanje elementom forme, recyclerviewom koji prikazuje sve izostanke određenog kolegija.
+     */
     private RecyclerView recyclerView;
+    /**
+     * Varijabla za upravljanje adapterom koji se prikazuje unutar recyclerviewa
+     */
     private IzostanakAdapter izostanakAdapter;
+    /**
+     * Varijabla za upravljanje instancom sučelja za prosljeđivanje informacija preko sučelja aktivnosti MainActivity.
+     */
     private OnKolegijChanged mKolegijChanged;
+    /**
+     * Varijabla za upravljanje ViewModelom aktivnosti DodavanjeIzostanka.
+     */
     private IzostanakViewModel izostanakViewModel;
 
     @Override
@@ -76,7 +120,10 @@ public class DodavanjeIzostanka extends AppCompatActivity {
         akcijaDodavanjaIzostanka();
     }
 
-
+    /**
+     * Funkcija koja unutar sebe ima observer koja promatra trenutni broj izostanka
+     * da može varijablu za prikaz na formi ažurirati u realnom vremenu.
+     */
     private void observajMijenjanjeBrojaIzostanaka() {
         izostanakViewModel.brojIzostanaka.observe(this, new Observer<Integer>() {
             @Override
@@ -86,11 +133,19 @@ public class DodavanjeIzostanka extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Funkcija za instanciranje objekta viewModela aktivnosti DodavanjeIzostanka.
+     */
     private void initViewModel() {
         izostanakViewModel = ViewModelProviders.of(this).get(IzostanakViewModel.class);
     }
 
+    /**
+     * Funkcija postavlja recyclerView na aktivnosti DodavanjeIzostanka,
+     * kreira objekt izostanakAdapter, dohvaća sve kolegije LIVE preko view modela,
+     * postavljaju se dohvaceni modeli unutar adaptera, i ujedno je kreiran observer
+     * koji promatra LiveData listu izostanka, da u slucaju promjene parsa sve izostanke u adapter.
+     */
     private void postaviRecycleView() {
         recyclerView = findViewById(R.id.recycleViewIzostanci);
         izostanakAdapter = new IzostanakAdapter();
@@ -108,6 +163,9 @@ public class DodavanjeIzostanka extends AppCompatActivity {
         izostanakAdapter.setContext(this);
     }
 
+    /**
+     * Funkcija za dodavanje listenera na gumb, koji dodaje novi Izostanak i IzostanakKolegija.
+     */
     private void akcijaDodavanjaIzostanka() {
 
         btnDodajIzostanak.setOnClickListener(new View.OnClickListener() {
@@ -132,10 +190,19 @@ public class DodavanjeIzostanka extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Funkcija koja objavještava adapter o promjenama nad izostancima i preko funkcije za NotifyAdapterOnKolegijChanges
+     * obavještava se adapter na MainActivityu za promjene nad unešem
+     */
     private void obavijestiObserver(){
         izostanakAdapter.notifyDataSetChanged();
         mKolegijChanged.NotifyAdapterOnKolegijChanges();
     }
+
+    /**
+     * Funkcija postavlja defaultni datum kao sadašnji dan.
+     */
     private void postaviDefaultDatum() {
         Date trenutniDatum = new Date();
         trenutniDatum.getTime();
@@ -171,12 +238,18 @@ public class DodavanjeIzostanka extends AppCompatActivity {
 
     }
 
+    /**
+     * Funkcija postavlja tekstualne podatke na elemente forme.
+     */
     private void postaviPodatkeNaGUI() {
         tvIzostanakNazivKolegija.setText(kolegijPromatranja.getNaziv());
         tvIzostanakNacinIzvodenjaNastave.setText(kolegijPromatranja.getNazivIzvodenjaKolegija());
         tvIzostanakBrojIzostanaka.setText(brojIzostanaka);
     }
 
+    /**
+     * Funkcija postavlja instance određenih elemenata forme na određene pripadne varijable.
+     */
     private void inicijalizirajGUI() {
         tvIzostanakNazivKolegija = findViewById(R.id.tvIzostanakNazivKolegija);
         tvIzostanakNacinIzvodenjaNastave = findViewById(R.id.tvIzostanakNacinIzvodenjaNastave);
@@ -186,6 +259,9 @@ public class DodavanjeIzostanka extends AppCompatActivity {
         etRazlogIzostanka = findViewById(R.id.etIzostanakRazlogIzostanka);
     }
 
+    /**
+     * Funkcija dohvaća varijable iz bundle i postavlja ih u određene varijable.
+     */
     private void dohvatiPodatkeBundlea() {
         idKolegija = getIntent().getExtras().getInt("id");
         brojIzostanaka = getIntent().getExtras().getString("izostanak");
@@ -194,6 +270,9 @@ public class DodavanjeIzostanka extends AppCompatActivity {
         inicijalizirajListener();
     }
 
+    /**
+     * Funkcija instancira varijablu sučelja.
+     */
     private void inicijalizirajListener() {
         if(CurrentActivity.getActivity() instanceof OnKolegijChanged){
             mKolegijChanged = (OnKolegijChanged) CurrentActivity.getActivity();
@@ -202,6 +281,12 @@ public class DodavanjeIzostanka extends AppCompatActivity {
                     + " must implement OnKolegijChanged");
         }
     }
+
+    /**
+     * Funkcija omogucava da svaki element adaptera kolegijAdapter bude moguce obrisati potezom ulijevo ili udesno.
+     * @param recyclerView RecyclerView objekt nad kojim zelimo to omoguciti.
+     * @param izostanakAdapter Adapter koji je sadrzan unutar recycler viewa.
+     */
     public void makeIzostanakEraseable(final RecyclerView recyclerView, final IzostanakAdapter izostanakAdapter){
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
