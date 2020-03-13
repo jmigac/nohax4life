@@ -23,7 +23,7 @@ import static java.security.AccessController.getContext;
 
 public class DodavanjeKolegija extends AppCompatActivity {
     /**
-     * Varijabla za upravljanje elementom forme, popisom svih načina upravljanja nastave.
+     * Varijabla za upravljanje elementom forme, popisom svih nacina upravljanja nastave.
      */
     private Spinner dropDownNaciniIzvodenjaNastave;
     /**
@@ -39,7 +39,7 @@ public class DodavanjeKolegija extends AppCompatActivity {
      */
     private Button btnUnosKolegija;
     /**
-     * Varijabla za upravljanje instanciranim sučeljem OnKolegijAdded koji razgovara s MainActivityem.
+     * Varijabla za upravljanje instanciranim suceljem OnKolegijAdded koji razgovara s MainActivityem.
      */
     private OnKolegijAdded onKolegijAdded;
 
@@ -56,7 +56,7 @@ public class DodavanjeKolegija extends AppCompatActivity {
     }
 
     /**
-     * Funkcija postavlja instancirano sučelje onKolegijAdded klasom MainActivity kad ona impelementira navedeno rješenje.
+     * Funkcija postavlja instancirano sucelje onKolegijAdded klasom MainActivity kad ona impelementira navedeno rjesenje.
      */
     private void postaviVM() {
         if(CurrentActivity.getActivity() instanceof OnKolegijAdded){
@@ -69,7 +69,7 @@ public class DodavanjeKolegija extends AppCompatActivity {
 
     /**
      * Funkcija kreira listener za upravljanje klikom na gumb dodavanje novog kolegija, a prvenstveno provjerava da li naziv kolegija
-     * ima sadrži ikakav unos, kao i broj izostanaka. Te naposljetku zatvara pripratnu aktivnost DodavanjeKolegija.
+     * ima sadrzi ikakav unos, kao i broj izostanaka. Te naposljetku zatvara pripratnu aktivnost DodavanjeKolegija.
      */
     private void trigerNaGumb() {
         btnUnosKolegija.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +99,8 @@ public class DodavanjeKolegija extends AppCompatActivity {
     }
 
     /**
-     * Funkcija postavlja hard kodane stringove u array koji će se prikazivati u padajućem izborniku za izbor
-     * mogućnosti izvođenja nastave.
+     * Funkcija postavlja hard kodane stringove u array koji će se prikazivati u padajucem izborniku za izbor
+     * mogucnosti izvodenja nastave.
      */
     private void postaviNacinIzvodenjaNastave() {
         List<String> nacini = new ArrayList<String> ();

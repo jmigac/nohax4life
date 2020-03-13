@@ -49,17 +49,17 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
      */
     private MyDatabase bazaPodataka;
     /**
-     * Varijabla za upravljanje recycler listom na početnom ekranu.
+     * Varijabla za upravljanje recycler listom na pocetnom ekranu.
      */
     private RecyclerView recyclerView;
     /**
-     * Varijabla za upravljanje listom svih kolegija koja se ažurira unutar observera
+     * Varijabla za upravljanje listom svih kolegija koja se azurira unutar observera
      * za promatranje popisa svih kolegija koji se prikazuju na recycler viewu.
      */
     private List<Kolegij> sviKolegiji;
     /**
-     * Varijabla za klasu MVVM strukture, konkretnije ViewModel koja radi svu poslovnu l
-     * ogiku vezanu uz CRUD operacije vezane uz entitet Kolegij.
+     * Varijabla za klasu MVVM strukture, konkretnije ViewModel koja radi svu poslovnu
+     * logiku vezanu uz CRUD operacije vezane uz entitet Kolegij.
      */
     private KolegijViewModel kolegijViewModel;
     /**
@@ -97,11 +97,11 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
             }
         });
         /**
-         * Dohvaćanje instance baze podataka.
+         * Dohvacanje instance baze podataka.
          */
         bazaPodataka = getInstance(this);
         /**
-         * Dohvaćnje početne kolegije na kreiranju aktivnosti MainActivity
+         * Dohvaćanje pocetne kolegije na kreiranju aktivnosti MainActivity
          */
         sviKolegiji = bazaPodataka.getKolegijDAO().dohvatiSveKolegije();
         postaviRecycleView();
@@ -111,9 +111,9 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
     /**
      * Funkcija postavlja recyclerView na aktivnosti MainActivity,
      * kreira objekt KolegijAdapter, dohvaća sve kolegije LIVE preko view modela,
-     * postavljaju se dohvaćeni modeli unutar adaptera, i ujedno je kreiran observer
-     * koji promatra LiveData listu kolegija, da u slučaju promjene parsa sve kolegije u adapter.
-     * @return Vraća novokreirani KolegijAdapter
+     * postavljaju se dohvaceni modeli unutar adaptera, i ujedno je kreiran observer
+     * koji promatra LiveData listu kolegija, da u slucaju promjene parsa sve kolegije u adapter.
+     * @return Vraca novokreirani KolegijAdapter
      */
     private KolegijAdapter postaviRecycleView() {
         recyclerView = findViewById(R.id.recycleLista);
@@ -158,8 +158,8 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
     }
 
     /**
-     * Funkcija koja implementira funkciju iz sučelja OnKolegijClick, koja zapravo računa broj
-     * trenutnih izostanaka određenog kolegija i dohvaća broj mogućih izostanaka te kreira
+     * Funkcija koja implementira funkciju iz sucelja OnKolegijClick, koja zapravo racuna broj
+     * trenutnih izostanaka odredenog kolegija i dohvaca broj mogucih izostanaka te kreira
      * bundle koji se prosljeđuje novoj aktivnosti koja će se kreirati, DodavanjeIzostanaka.
      * @param position pozicija kliknutog kolegija unutar liste sviKolegiji
      */
@@ -184,9 +184,9 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
     }
 
     /**
-     * Funkcija koja je implementirana zbog sučelja OnKolegijChanged koji javlja iz drugih klasa
-     * klasi MainActivity da je došlo do promjene određenih podataka, kao pr. broja izostanaka da se
-     * mogu u stvarnom vremenu ažurirati na MainActivity.
+     * Funkcija koja je implementirana zbog sucelja OnKolegijChanged koji javlja iz drugih klasa
+     * klasi MainActivity da je doslo do promjene odredenih podataka, kao pr. broja izostanaka da se
+     * mogu u stvarnom vremenu azurirati na MainActivity.
      */
     @Override
     public void NotifyAdapterOnKolegijChanges() {
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
     }
 
     /**
-     * Funkcija koja implementira funkciju sučelja OnKolegijAdded koja unosi novi
+     * Funkcija koja implementira funkciju sucelja OnKolegijAdded koja unosi novi
      * kolegij pomoću viewModela, i obaviještava adapter o promjenama i o poziciji
      * novog kreiranog kolegija u listi.
      * @param kolegij novokreirani Kolegij koje se treba unijeti u bazu podataka.
@@ -208,9 +208,9 @@ public class MainActivity extends AppCompatActivity implements OnKolegijClick, O
     }
 
     /**
-     * Funkcija omogućava da svaki element adaptera kolegijAdapter bude moguće obrisati potezom ulijevo ili udesno.
-     * @param recyclerView RecyclerView objekt nad kojim želimo to omogućiti.
-     * @param kolegijAdapter Adapter koji je sadržan unutar recycler viewa.
+     * Funkcija omogucava da svaki element adaptera kolegijAdapter bude moguce obrisati potezom ulijevo ili udesno.
+     * @param recyclerView RecyclerView objekt nad kojim zelimo to omoguciti.
+     * @param kolegijAdapter Adapter koji je sadrzan unutar recycler viewa.
      */
     public void makeKolegijEraseable(final RecyclerView recyclerView, final KolegijAdapter kolegijAdapter){
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
