@@ -22,11 +22,25 @@ import interfaces.OnKolegijAdded;
 import static java.security.AccessController.getContext;
 
 public class DodavanjeKolegija extends AppCompatActivity {
-
+    /**
+     * Varijabla za upravljanje elementom forme, popisom svih načina upravljanja nastave.
+     */
     private Spinner dropDownNaciniIzvodenjaNastave;
+    /**
+     * Varijabla za upravljanjem elementom forme za unos naziva kolegija.
+     */
     private EditText etNazivKolegija;
+    /**
+     *Varijabla za upravljanje elementom forme, za unos broja izostanka na kolegiju.
+     */
     private EditText etBrojIzostanaka;
+    /**
+     * Varijabla za upravljanje elementom forme, za upravljanje radnjama na gumbu za unos novog kolegija.
+     */
     private Button btnUnosKolegija;
+    /**
+     * Varijabla za upravljanje instanciranim sučeljem OnKolegijAdded koji razgovara s MainActivityem.
+     */
     private OnKolegijAdded onKolegijAdded;
 
     @Override
@@ -41,6 +55,9 @@ public class DodavanjeKolegija extends AppCompatActivity {
 
     }
 
+    /**
+     * Funkcija postavlja instancirano sučelje onKolegijAdded klasom MainActivity kad ona impelementira navedeno rješenje.
+     */
     private void postaviVM() {
         if(CurrentActivity.getActivity() instanceof OnKolegijAdded){
             onKolegijAdded = (OnKolegijAdded) CurrentActivity.getActivity();
@@ -50,6 +67,10 @@ public class DodavanjeKolegija extends AppCompatActivity {
         }
     }
 
+    /**
+     * Funkcija kreira listener za upravljanje klikom na gumb dodavanje novog kolegija, a prvenstveno provjerava da li naziv kolegija
+     * ima sadrži ikakav unos, kao i broj izostanaka. Te naposljetku zatvara pripratnu aktivnost DodavanjeKolegija.
+     */
     private void trigerNaGumb() {
         btnUnosKolegija.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +88,9 @@ public class DodavanjeKolegija extends AppCompatActivity {
         });
     }
 
+    /**
+     * Funkcija dodaje instancu svakog elementa forme u određenu varijablu.
+     */
     private void postaviGUI() {
         dropDownNaciniIzvodenjaNastave = findViewById(R.id.spNaciniIzvodenja1);
         etNazivKolegija = findViewById(R.id.etNazivKolegija1);
@@ -74,6 +98,10 @@ public class DodavanjeKolegija extends AppCompatActivity {
         btnUnosKolegija = findViewById(R.id.btnUnosKolegija1);
     }
 
+    /**
+     * Funkcija postavlja hard kodane stringove u array koji će se prikazivati u padajućem izborniku za izbor
+     * mogućnosti izvođenja nastave.
+     */
     private void postaviNacinIzvodenjaNastave() {
         List<String> nacini = new ArrayList<String> ();
         nacini.add("Predavanje");
