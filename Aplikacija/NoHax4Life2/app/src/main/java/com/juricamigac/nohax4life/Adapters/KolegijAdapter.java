@@ -28,19 +28,36 @@ import interfaces.OnKolegijClick;
 
 public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijHolder> {
 
+    /**
+     * Lista svih kolegija među kojima će svaki element biti prikazan u viewHolderu.
+     */
     private List<Kolegij> kolegiji = new ArrayList<>();
+    /**
+     * Kontekst iz kojeg se kreira adapter.
+     */
     private Context context;
+    /**
+     * Varijabla za pristup sučelju kako bi se mogli prenijeti podaci klasi koja poziva adapter.
+     */
     private OnKolegijClick onKolegijClick;
-    private Observer<Integer> obsTrenutniBrojIzostanaka;
 
+    /**
+     * Funkcija za postavljanje konteksta iz kojeg se poziva adapter.
+     * @param context trenutni kontekst aktivnosti gdje se nalazi recyclerView.
+     */
     public void setContext(Context context){
         this.context = context;
     }
 
+    /**
+     * Funkcija za postavljanje kolegija koji će se nalaziti unutar adaptera, recyclerViewa.
+     * @param prosljedeniKolegiji Kolegiji koji će se nalazitu unutar viewHoldera, tj. adaptera.
+     */
     public void setKolegiji(List<Kolegij> prosljedeniKolegiji){
         kolegiji = prosljedeniKolegiji;
         notifyDataSetChanged();
     }
+
     public KolegijAdapter(OnKolegijClick onKolegijClick){
         this.onKolegijClick = onKolegijClick;
     }
@@ -64,11 +81,24 @@ public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijH
             @Override
             public void onChanged(Integer integer) {
                 String izostanci = "";
+                /**
+                 * Broj trenutnih izostanaka s kolegija.
+                 */
                 int brojIzostanaka = MyDatabase.getInstance(context).getIzostanakDAO().dohvatiBrojIzostanakaOdredenogKolegija(kolegiji.get(position).getId());
+                /**
+                 * Maksimalan broj dozvoljenih izostanaka s određenog kolegija.
+                 */
                 int brojMogucihIzostanaka = kolegiji.get(position).getBrojIzostanaka();
                 izostanci = brojIzostanaka + "/" + brojMogucihIzostanaka;
                 holder.tvIzostanci.setText(izostanci);
                 try {
+                    /**
+                     * Omjer preko kojeg se izračunava te kasnije postavlja određena boja pozadine za vizualnu
+                     * reprezentaciju broja izostanaka određenog kolegija.
+                     *  - Crvena 75% ili više izostanaka s kolegija.
+                     *  - Žuta više od 35% i manje od 75% izostanaka s kolegija.
+                     *  - Zelena manje od 35% izostanaka.
+                     */
                     float omjer = ((float)brojIzostanaka / (float)brojMogucihIzostanaka)*100;
 
                     if(omjer < 35){
@@ -93,13 +123,27 @@ public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijH
         holder.tvNacinIzvodenja.setText(trenutniKolegij.getNazivIzvodenjaKolegija());
     }
 
+    /**
+     * Funkcija za dohvaćanje objekta Kolegij na određenoj poziciji unutar liste.
+     * @param position Pozicija objekta unutar liste.
+     * @return objekt Kolegij.
+     */
     public Kolegij getKolegijAtPosition(int position){
         return kolegiji.get(position);
     }
+
+    /**
+     * Funkcija za brisanje kolegija na određenoj poziciji.
+     * @param position pozicija s koje želimo izbrisati kolegij iz liste.
+     */
     public void removeKolegijAtPosition(int position){
         kolegiji.remove(position);
     }
 
+    /**
+     * Funkcija za dohvaćanje broja kolegija unutar liste.
+     * @return cjelobrojnu vrijednost broja izostanaka.
+     */
     @Override
     public int getItemCount() {
         return kolegiji.size();
@@ -107,19 +151,35 @@ public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijH
 
     public class KolegijHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        /**
+         * Varijabla za upravljanje elementom forme, prikaz tekstualnog zapisa naziva kolegija.
+         */
         private TextView tvNazivKolegija;
+        /**
+         * Varijabla za upravljanje elementom forme, prikaz tekstualnog zapisa o broju (omjeru) izostanaka.
+         */
         private TextView tvIzostanci;
+        /**
+         * Varijabla za upravljanje elementom forme, prikaz tekstualnog zapisa o načinu izvođenja kolegija.
+         */
         private TextView tvNacinIzvodenja;
+        /**
+         * Varijabla za upravljanje elementima forme.
+         */
         private View pogled;
+        /**
+         * Varijabla za sučelja za prosljeđivanje podataka nadklasi koja je pozvala adapter.
+         */
         private OnKolegijClick onKolegijClickListener;
 
-        private RelativeLayout relativeLayout;
+        /**
+         * Varijabla za upravljanje elementom forme, prikaz slikovnog dijela broja izostanaka.
+         */
         private ImageView iVOmjerBrojaIzostanaka;
 
         public KolegijHolder(@NonNull View itemView, OnKolegijClick onKolegijClickListener) {
             super(itemView);
             pogled = itemView;
-            relativeLayout = pogled.findViewById(R.id.kolegijRelativeLayout);
             tvNazivKolegija = pogled.findViewById(R.id.tvRazlogIzostanka);
             tvIzostanci = pogled.findViewById(R.id.tvDatumIzostanka);
             tvNacinIzvodenja = pogled.findViewById(R.id.tvNacinIzvodenja);

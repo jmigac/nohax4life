@@ -21,13 +21,23 @@ import interfaces.OnKolegijClick;
 
 public class IzostanakAdapter extends RecyclerView.Adapter<IzostanakAdapter.IzostanakHolder> {
 
+    /**
+     * Lista svih izostanaka.
+     */
     private List<Izostanak> izostanci = new ArrayList<>();
+    /**
+     * Kontekst iz kojeg se poziva adapter.
+     */
     private Context context;
 
     public void setContext(Context context){
         this.context = context;
     }
 
+    /**
+     * Funkcija za postavljanje izostanaka koji da se nalaze u recyclerViewu.
+     * @param prosljedeniIzostanci Lista Izostanaka koji se trebaju nalaziti u recyclerViewu.
+     */
     public void setIzostanci(List<Izostanak> prosljedeniIzostanci){
         izostanci = prosljedeniIzostanci;
         notifyDataSetChanged();
@@ -47,22 +57,45 @@ public class IzostanakAdapter extends RecyclerView.Adapter<IzostanakAdapter.Izos
         holder.tvRazlog.setText(trenutniIzostanak.getRazlogIzostanka());
     }
 
+    /**
+     * Funkcija za dohvaćanje broja izostanaka.
+     * @return cjelobrojnu vrijednost broja izostanaka.
+     */
     @Override
     public int getItemCount() {
         return izostanci.size();
     }
 
+
+    /**
+     * Funkcija vraća Izostanak na određenoj poziciji.
+     * @param pozicija cjelobrojna vrijednost pozicije.
+     * @return Izostanak na k-toj poziciji.
+     */
     public Izostanak getIzostanakAt(int pozicija) {
         return izostanci.get(pozicija);
     }
+
+    /**
+     * Funkcija briše Izostanak na k-toj poziciji.
+     * @param pozicija pozicija s koje želimo izbrisati Izostanak.
+     */
     public void removeIzostanakAt(int pozicija){
         izostanci.remove(pozicija);
     }
 
     public class IzostanakHolder extends RecyclerView.ViewHolder{
-
+        /**
+         * Varijabla za upravljanje elementom forme, prikaz tekstualnog zapisa datuma izostanka unutar viewholdera izostanka.
+         */
         private TextView tvDatumIzostanka;
+        /**
+         * Varijabla za upravljanje elementom forme, prikaz tekstualnog zapisa razloga izostanka unutar viewholdera izostanka.
+         */
         private TextView tvRazlog;
+        /**
+         * Varijabla za upravljanje elementima forme, koja sprema trenutni pogled unutar adaptera.
+         */
         private View pogled;
 
 
