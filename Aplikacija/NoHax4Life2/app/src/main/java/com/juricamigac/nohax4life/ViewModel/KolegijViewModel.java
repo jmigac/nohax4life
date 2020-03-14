@@ -24,11 +24,11 @@ public class KolegijViewModel extends AndroidViewModel {
 
     /**
      * Lista kolegija koji se prikazuju u recycleListi, ali su u formatu LiveData
-     * tako da se mogu preko observera pratiti ukoliko dođe do promjene da se određeno ažuriranje inicijalizira.
+     * tako da se mogu preko observera pratiti ukoliko dode do promjene da se odredeno azuriranje inicijalizira.
      */
     public LiveData<List<Kolegij>> kolegijiLiveData;
     /**
-     * Kontekts modela, aktivnosti s koje je pozvan ViewModel
+     * Kontekst modela, aktivnosti s koje je pozvan ViewModel
      */
     private Context context;
 
@@ -39,7 +39,7 @@ public class KolegijViewModel extends AndroidViewModel {
 
     /**
      * Funkcija za asynkrono kreiranje kolegija.
-     * @param kolegij objekt kolegija koji želimo spremiti u bazu podataka.
+     * @param kolegij objekt kolegija koji zelimo spremiti u bazu podataka.
      */
     public void unosKolegija(Kolegij kolegij){
         KolegijDAL.KreirajKolegij(context,kolegij);
@@ -47,41 +47,41 @@ public class KolegijViewModel extends AndroidViewModel {
 
     /**
      * Funkcija za asynkrono brisanje kolegija
-     * @param kolegij kolegij koji želimo izbrisati iz baze.
+     * @param kolegij kolegij koji zelimo izbrisati iz baze.
      */
     public void izbrisiKolegij(Kolegij kolegij){
         KolegijDAL.IzbrisiKolegij(context,kolegij);
     }
 
     /**
-     * Funkcija za asynkrono ažuriranje kolegija.
-     * @param kolegij kolegij koji želimo ažurirati s istim.
+     * Funkcija za asynkrono azuriranje kolegija.
+     * @param kolegij kolegij koji zelimo azurirati s istim.
      */
     public void azurirajKolegij(Kolegij kolegij){
         KolegijDAL.AzurirajKolegij(context,kolegij);
     }
 
     /**
-     * Funkcija za dohvaćanje određenog kolegija.
-     * @param kolegij Kolegij s identifikatorom kojeg želimo dohvatiti.
-     * @return vraća objekt Kolegij iz baze podataka.
+     * Funkcija za dohvacanje odredenog kolegija.
+     * @param kolegij Kolegij s identifikatorom kojeg zelimo dohvatiti.
+     * @return vraca objekt Kolegij iz baze podataka.
      */
     public Kolegij dohvatiKolegij(Kolegij kolegij){
        return KolegijDAL.ReadById(context,kolegij.getId());
     }
 
     /**
-     * Funkcija za dohvaćanje određenog kolegija tipa LiveData.
+     * Funkcija za dohvacanje određenog kolegija tipa LiveData.
      * @param id identifikator kolegija
-     * @return Objekt LiveData određenog kolegija.
+     * @return Objekt LiveData odredenog kolegija.
      */
     public LiveData<Kolegij> dohvatiKolegijLIVE(int id){
         return KolegijDAL.DohvatiKolegijLIVE(id,context);
     }
 
     /**
-     * Funkcija za dohvaćanje LiveData liste kolegija.
-     * @return vraća listu kolegija učahurenih u tip LiveData.
+     * Funkcija za dohvacanje LiveData liste kolegija.
+     * @return vraca listu kolegija ucahurenih u tip LiveData.
      */
     public LiveData<List<Kolegij>> dohvatiSveKolegijeLIVE(){
         kolegijiLiveData = KolegijDAL.DohvatiSveKolegijeLive(context);
@@ -89,8 +89,8 @@ public class KolegijViewModel extends AndroidViewModel {
     }
 
     /**
-     * Funkcija za brisanje svih izostanaka određenog kolegija.
-     * @param kolegij Kolegij za koji želimo izbrisati izostanke.
+     * Funkcija za brisanje svih izostanaka odredenog kolegija.
+     * @param kolegij Kolegij za koji zelimo izbrisati izostanke.
      */
     public void izbrisiIzostankeKolegija(Kolegij kolegij){
         IzostanakDAL.IzbrisiIzostankeKolegijaOdredenogKolegija(context,kolegij);

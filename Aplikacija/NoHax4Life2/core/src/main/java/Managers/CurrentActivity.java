@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CurrentActivity {
     /**
-     * Statička varijabla zadnje prosljeđene aktivnosti.
+     * Staticka varijabla zadnje prosljedene aktivnosti.
      */
     private static AppCompatActivity activity;
 
     /**
-     * Getter funkcija za dohvaćanje zadnje prosljeđene aktivnosti.
+     * Getter funkcija za dohvacanje zadnje prosljedene aktivnosti.
      * @return AppCompatActivity
      */
     public static AppCompatActivity getActivity() {
@@ -17,7 +17,7 @@ public class CurrentActivity {
     }
 
     /**
-     * Setter funkcija za postavljanje zadnje prosljeđene aktivnosti.
+     * Setter funkcija za postavljanje zadnje prosljedene aktivnosti.
      * @param aktivnost AppCompatActivity
      */
     public static void setActivity(AppCompatActivity aktivnost) {

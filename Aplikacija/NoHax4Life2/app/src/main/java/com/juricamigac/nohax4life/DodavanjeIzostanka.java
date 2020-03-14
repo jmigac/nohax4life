@@ -97,7 +97,7 @@ public class DodavanjeIzostanka extends AppCompatActivity {
      */
     private IzostanakAdapter izostanakAdapter;
     /**
-     * Varijabla za upravljanje instancom sučelja za prosljeđivanje informacija preko sučelja aktivnosti MainActivity.
+     * Varijabla za upravljanje instancom sucelja za prosljeđivanje informacija preko sucelja aktivnosti MainActivity.
      */
     private OnKolegijChanged mKolegijChanged;
     /**
@@ -192,8 +192,8 @@ public class DodavanjeIzostanka extends AppCompatActivity {
     }
 
     /**
-     * Funkcija koja objavještava adapter o promjenama nad izostancima i preko funkcije za NotifyAdapterOnKolegijChanges
-     * obavještava se adapter na MainActivityu za promjene nad unešem
+     * Funkcija koja objavjestava adapter o promjenama nad izostancima i preko funkcije za NotifyAdapterOnKolegijChanges
+     * obavjestava se adapter na MainActivityu za promjene nad unesenim
      */
     private void obavijestiObserver(){
         izostanakAdapter.notifyDataSetChanged();
@@ -271,7 +271,7 @@ public class DodavanjeIzostanka extends AppCompatActivity {
     }
 
     /**
-     * Funkcija instancira varijablu sučelja.
+     * Funkcija instancira varijablu sucelja.
      */
     private void inicijalizirajListener() {
         if(CurrentActivity.getActivity() instanceof OnKolegijChanged){

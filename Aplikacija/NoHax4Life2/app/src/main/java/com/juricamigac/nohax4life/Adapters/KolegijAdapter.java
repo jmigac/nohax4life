@@ -29,7 +29,7 @@ import interfaces.OnKolegijClick;
 public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijHolder> {
 
     /**
-     * Lista svih kolegija među kojima će svaki element biti prikazan u viewHolderu.
+     * Lista svih kolegija medu kojima ce svaki element biti prikazan u viewHolderu.
      */
     private List<Kolegij> kolegiji = new ArrayList<>();
     /**
@@ -37,7 +37,7 @@ public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijH
      */
     private Context context;
     /**
-     * Varijabla za pristup sučelju kako bi se mogli prenijeti podaci klasi koja poziva adapter.
+     * Varijabla za pristup sucelju kako bi se mogli prenijeti podaci klasi koja poziva adapter.
      */
     private OnKolegijClick onKolegijClick;
 
@@ -50,8 +50,8 @@ public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijH
     }
 
     /**
-     * Funkcija za postavljanje kolegija koji će se nalaziti unutar adaptera, recyclerViewa.
-     * @param prosljedeniKolegiji Kolegiji koji će se nalazitu unutar viewHoldera, tj. adaptera.
+     * Funkcija za postavljanje kolegija koji ce se nalaziti unutar adaptera, recyclerViewa.
+     * @param prosljedeniKolegiji Kolegiji koji ce se nalazitu unutar viewHoldera, tj. adaptera.
      */
     public void setKolegiji(List<Kolegij> prosljedeniKolegiji){
         kolegiji = prosljedeniKolegiji;
@@ -86,17 +86,17 @@ public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijH
                  */
                 int brojIzostanaka = MyDatabase.getInstance(context).getIzostanakDAO().dohvatiBrojIzostanakaOdredenogKolegija(kolegiji.get(position).getId());
                 /**
-                 * Maksimalan broj dozvoljenih izostanaka s određenog kolegija.
+                 * Maksimalan broj dozvoljenih izostanaka s odredenog kolegija.
                  */
                 int brojMogucihIzostanaka = kolegiji.get(position).getBrojIzostanaka();
                 izostanci = brojIzostanaka + "/" + brojMogucihIzostanaka;
                 holder.tvIzostanci.setText(izostanci);
                 try {
                     /**
-                     * Omjer preko kojeg se izračunava te kasnije postavlja određena boja pozadine za vizualnu
-                     * reprezentaciju broja izostanaka određenog kolegija.
-                     *  - Crvena 75% ili više izostanaka s kolegija.
-                     *  - Žuta više od 35% i manje od 75% izostanaka s kolegija.
+                     * Omjer preko kojeg se izracunava te kasnije postavlja odredena boja pozadine za vizualnu
+                     * reprezentaciju broja izostanaka odredenog kolegija.
+                     *  - Crvena 75% ili vise izostanaka s kolegija.
+                     *  - Žuta vise od 35% i manje od 75% izostanaka s kolegija.
                      *  - Zelena manje od 35% izostanaka.
                      */
                     float omjer = ((float)brojIzostanaka / (float)brojMogucihIzostanaka)*100;
@@ -133,15 +133,15 @@ public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijH
     }
 
     /**
-     * Funkcija za brisanje kolegija na određenoj poziciji.
-     * @param position pozicija s koje želimo izbrisati kolegij iz liste.
+     * Funkcija za brisanje kolegija na odredenoj poziciji.
+     * @param position pozicija s koje zelimo izbrisati kolegij iz liste.
      */
     public void removeKolegijAtPosition(int position){
         kolegiji.remove(position);
     }
 
     /**
-     * Funkcija za dohvaćanje broja kolegija unutar liste.
+     * Funkcija za dohvacanje broja kolegija unutar liste.
      * @return cjelobrojnu vrijednost broja izostanaka.
      */
     @Override
@@ -160,7 +160,7 @@ public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijH
          */
         private TextView tvIzostanci;
         /**
-         * Varijabla za upravljanje elementom forme, prikaz tekstualnog zapisa o načinu izvođenja kolegija.
+         * Varijabla za upravljanje elementom forme, prikaz tekstualnog zapisa o nacinu izvodenja kolegija.
          */
         private TextView tvNacinIzvodenja;
         /**
@@ -168,7 +168,7 @@ public class KolegijAdapter extends RecyclerView.Adapter<KolegijAdapter.KolegijH
          */
         private View pogled;
         /**
-         * Varijabla za sučelja za prosljeđivanje podataka nadklasi koja je pozvala adapter.
+         * Varijabla za sucelja za prosljedivanje podataka nadklasi koja je pozvala adapter.
          */
         private OnKolegijClick onKolegijClickListener;
 

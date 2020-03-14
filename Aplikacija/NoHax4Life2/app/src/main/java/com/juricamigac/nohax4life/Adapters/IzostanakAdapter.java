@@ -58,7 +58,7 @@ public class IzostanakAdapter extends RecyclerView.Adapter<IzostanakAdapter.Izos
     }
 
     /**
-     * Funkcija za dohvaćanje broja izostanaka.
+     * Funkcija za dohvacanje broja izostanaka.
      * @return cjelobrojnu vrijednost broja izostanaka.
      */
     @Override
@@ -68,7 +68,7 @@ public class IzostanakAdapter extends RecyclerView.Adapter<IzostanakAdapter.Izos
 
 
     /**
-     * Funkcija vraća Izostanak na određenoj poziciji.
+     * Funkcija vraca Izostanak na odredenoj poziciji.
      * @param pozicija cjelobrojna vrijednost pozicije.
      * @return Izostanak na k-toj poziciji.
      */
@@ -78,7 +78,7 @@ public class IzostanakAdapter extends RecyclerView.Adapter<IzostanakAdapter.Izos
 
     /**
      * Funkcija briše Izostanak na k-toj poziciji.
-     * @param pozicija pozicija s koje želimo izbrisati Izostanak.
+     * @param pozicija pozicija s koje zelimo izbrisati Izostanak.
      */
     public void removeIzostanakAt(int pozicija){
         izostanci.remove(pozicija);

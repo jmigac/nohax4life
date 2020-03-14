@@ -17,11 +17,11 @@ import java.util.List;
 public class IzostanakViewModel extends AndroidViewModel {
 
     /**
-     * Lista izostanaka učahurena u LiveData za daljnje promatranje, "observe".
+     * Lista izostanaka ucahurena u LiveData za daljnje promatranje, "observe".
      */
     public LiveData<List<Izostanak>> sviIzostanci;
     /**
-     * LiveData koji sadrži broj izostanaka kao Integer.
+     * LiveData koji sadrzi broj izostanaka kao Integer.
      */
     public LiveData<Integer> brojIzostanaka;
     /**
@@ -36,15 +36,15 @@ public class IzostanakViewModel extends AndroidViewModel {
 
     /**
      * Funkcija za Asynkroni unos novog izostanka.
-     * @param izostanaci izostanak ili niz istih koji se žele spremiti u bazu podataka.
+     * @param izostanaci izostanak ili niz istih koji se zele spremiti u bazu podataka.
      */
     public void UnosIzostanka(Izostanak... izostanaci){
         IzostanakDAL.KreirajIzostanakAsync(context,izostanaci);
     }
 
     /**
-     * Funkcija za asynkroni unos izostanka kolegija, jednog ili više istih.
-     * @param izostanciKolegija jedan ili niz objekata tipa IzostanciKolegija koji se žele unijeti u bazu podataka.
+     * Funkcija za asynkroni unos izostanka kolegija, jednog ili vise istih.
+     * @param izostanciKolegija jedan ili niz objekata tipa IzostanciKolegija koji se zele unijeti u bazu podataka.
      */
     public void UnosIzostankaKolegija(IzostanciKolegija... izostanciKolegija){
         IzostanakDAL.KreirajIzostanakKolegijaAsync(context,izostanciKolegija);
@@ -78,9 +78,9 @@ public class IzostanakViewModel extends AndroidViewModel {
     }
 
     /**
-     * Funkcija za dohvaćanje liste izostanka učahurenih u LiveData.
+     * Funkcija za dohvacanje liste izostanka ucahurenih u LiveData.
      * @param id identifikator izostanka
-     * @return listu izostanka učahurenih u LiveData
+     * @return listu izostanka ucahurenih u LiveData
      */
     public LiveData<List<Izostanak>> DohvatiSveIzostankeLIVE(int id){
         sviIzostanci = IzostanakDAL.DohvatiSveIzostankeLIVE(context,id);
@@ -88,7 +88,7 @@ public class IzostanakViewModel extends AndroidViewModel {
     }
 
     /**
-     * Funkcija dohvaća livedata integer
+     * Funkcija dohvaca livedata integer
      * @param id identifikator izostanka
      * @return LiveData integer
      */
